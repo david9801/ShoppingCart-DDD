@@ -22,3 +22,10 @@ Route::get('user/{id}', 'User\GetUserController');
 Route::post('user', 'User\CreateUserController');
 Route::put('user/{id}', 'User\UpdateUserController');
 Route::delete('user/{id}', 'User\DeleteUserController');
+
+Route::middleware('auth:api')->get('/product', function (Request $request) {
+    return $request->product();
+});
+Route::get('product/{id}', 'Product\GetProductController');
+Route::post('product', 'Product\CreateProductController');
+Route::delete('product/{id}', 'Product\DeleteProductController');
