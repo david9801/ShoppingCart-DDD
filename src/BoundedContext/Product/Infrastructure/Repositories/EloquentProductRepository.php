@@ -24,7 +24,7 @@ final class EloquentProductRepository implements ProductRepositoryContract
 
     public function find(ProductId $id): ?Product
     {
-        $user = $this->eloquentProductModel->findOrFail($id->value());
+        $product = $this->eloquentProductModel->findOrFail($id->value());
 
         return new Product(
             new ProductName($product->name),
