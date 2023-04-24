@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Product;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Src\BoundedContext\Product\Infrastructure\GetAllProductController;
 
 class GetAllProductController extends Controller
 {
@@ -14,7 +13,7 @@ class GetAllProductController extends Controller
      */
     private $getAllProductController;
 
-    public function __construct(GetAllProductController $getAllProductController)
+    public function __construct(\Src\BoundedContext\Product\Infrastructure\GetAllProductController $getAllProductController)
     {
         $this->getAllProductController = $getAllProductController;
     }

@@ -36,7 +36,6 @@ final class EloquentProductRepository implements ProductRepositoryContract
     public function findAll(): array
     {
         $products = $this->eloquentProductModel->all();
-
         $result = [];
         foreach ($products as $product) {
             $result[] = new Product(

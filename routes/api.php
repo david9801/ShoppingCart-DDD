@@ -26,6 +26,7 @@ Route::delete('user/{id}', 'User\DeleteUserController');
 Route::middleware('auth:api')->get('/product', function (Request $request) {
     return $request->product();
 });
-Route::get('product/{id}', 'Product\GetProductController')->name('show-products');
+Route::get('product/{id}', 'Product\GetProductController');
 Route::post('product', 'Product\CreateProductController');
 Route::delete('product/{id}', 'Product\DeleteProductController');
+Route::get('products', 'Product\GetAllProductController')->name('show-products');

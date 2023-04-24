@@ -7,7 +7,7 @@ namespace Src\BoundedContext\Product\Infrastructure;
 use Illuminate\Http\Request;
 use Src\BoundedContext\Product\Application\GetProductUseCase;
 use Src\BoundedContext\Product\Infrastructure\Repositories\EloquentProductRepository;
-
+use Illuminate\Support\Facades\Log;
 final class GetProductController
 {
     private $repository;
@@ -20,7 +20,6 @@ final class GetProductController
     public function __invoke(Request $request)
     {
         $productId = (int)$request->id;
-
         $getProductUseCase = new GetProductUseCase($this->repository);
         $product           = $getProductUseCase->__invoke($productId);
 
