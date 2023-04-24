@@ -14,4 +14,7 @@ interface ProductRepositoryContract
     public function save(Product $product): void;
 
     public function delete(ProductId $id): void;
+
+    public function findAll(): array;
+
 }

@@ -33,18 +33,35 @@ final class EloquentProductRepository implements ProductRepositoryContract
         );
     }
 
-    public function save(Product $product): void
+    public function findAll(): array
     {
-        $newProduct = $this->eloquentProductModel;
+        $products = $this->eloquentProductModel->all();
 
-        $data = [
-            'name'               => $product->name()->value(),
-            'description'        => $product->description()->value(),
-            'price'              => $product->price()->value(),
-        ];
+        $result = [];
+        foreach ($products as $product) {
+            $result[] = new Product(
+                new ProductName($product->name),
+                new ProductDescription($product->description),
+                new ProductPrice($product->price)
+            );
+        }
 
-        $newProduct->create($data);
+        return $result;
     }
+
+
+    public function save(Product $product): void
+        {
+            $newProduct = $this->eloquentProductModel;
+
+            $data = [
+                'name'               => $product->name()->value(),
+                'description'        => $product->description()->value(),
+                'price'              => $product->price()->value(),
+            ];
+
+            $newProduct->create($data);
+        }
 
 
     public function delete(ProductId $id): void

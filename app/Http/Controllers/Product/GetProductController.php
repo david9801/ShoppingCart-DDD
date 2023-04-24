@@ -11,7 +11,7 @@ class GetProductController extends Controller
     /**
      * @var \Src\BoundedContext\Product\Infrastructure\GetProductController
      */
-    private $getUserController;
+    private $getProductController;
 
     public function __construct(\Src\BoundedContext\Product\Infrastructure\GetProductController $getProductController)
     {
