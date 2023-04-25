@@ -6,7 +6,6 @@ namespace Src\BoundedContext\Product\Application;
 
 use Src\BoundedContext\Product\Domain\Contracts\ProductRepositoryContract;
 use Src\BoundedContext\Product\Domain\Product;
-use Src\BoundedContext\Product\Domain\ValueObjects\ProductId;
 use Src\BoundedContext\Product\Domain\ValueObjects\ProductName;
 use Src\BoundedContext\Product\Domain\ValueObjects\ProductDescription;
 use Src\BoundedContext\Product\Domain\ValueObjects\ProductPrice;

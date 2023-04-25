@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Src\BoundedContext\Product\Infrastructure;
 
 use Illuminate\Http\Request;
-use Src\BoundedContext\Product\Application\CreateProductUseCase;
 use Src\BoundedContext\Product\Application\GetProductUseCase;
 use Src\BoundedContext\Product\Infrastructure\Repositories\EloquentProductRepository;
 
