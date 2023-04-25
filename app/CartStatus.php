@@ -1,25 +1,18 @@
 <?php
 
-
 namespace App;
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class Product extends Authenticatable
+
+class CartStatus extends Authenticatable
 {
 
     //al no extender un model (para desacoplar el proyecto ==ddd) para ejecutar los seeders necesitamos que extienda
     //de authenticable, que tiene el metodo create / updateOrCreate
-    use Notifiable;
+    public $timestamps = false;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'description', 'price',
-    ];
-
+    const IN_PROGRESS = 1;
+    const PAYMENT_SUCCESSFUL = 2;
+    const PAYMENT_ERROR = 3;
+    const ABANDONED = 4;
 }
