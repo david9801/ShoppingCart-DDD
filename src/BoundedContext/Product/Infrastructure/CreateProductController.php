@@ -22,16 +22,13 @@ final class CreateProductController
         $productName           = $request->input('name');
         $productDescription    = $request->input('description');
         $productPrice          = $request->input('price');
-;
+
         $createProductUseCase->__invoke(
             $productName,
             $productDescription,
             $productPrice,
         );
-            /*
-                $getUserByCriteriaUseCase = new GetUserByCriteriaUseCase($this->repository);
-                $newProduct                  = $getUserByCriteriaUseCase->__invoke($userName, $userEmail);
-            */
+
         $productId = (int)$request->id;
         $getProductUseCase  = new GetProductUseCase($this->repository);
         $newProduct         = $getProductUseCase->__invoke($productId);

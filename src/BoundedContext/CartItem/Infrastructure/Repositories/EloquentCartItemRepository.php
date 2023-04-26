@@ -4,40 +4,48 @@ declare(strict_types=1);
 
 namespace Src\BoundedContext\CartItem\Infrastructure\Repositories;
 
-use App\Cart as EloquentCartModel;
-use Src\BoundedContext\Cart\Domain\Contracts\CartRepositoryContract;
-use Src\BoundedContext\Cart\Domain\CartItem;
-use Src\BoundedContext\Cart\Domain\ValueObjects\CartId;
+use App\CartItem as EloquentCartItemModel;
+use Src\BoundedContext\CartItem\Domain\Contracts\CartItemRepositoryContract;
+use Src\BoundedContext\CartItem\Domain\CartItem;
+use Src\BoundedContext\CartItem\Domain\ValueObjects\CartItemId;
+use Src\BoundedContext\CartItem\Domain\ValueObjects\CartItemQuantity;
 
 
-final class EloquentCartItemRepository implements CartRepositoryContract
+final class EloquentCartItemRepository implements CartItemRepositoryContract
 {
-    private $eloquentCartModel;
+    private $eloquentCartItemModel;
 
     public function __construct()
     {
-        $this->eloquentCartModel = new EloquentCartModel;
+        $this->eloquentCartItemModel = new EloquentCartItemModel;
     }
 
-    public function find(CartId $id): ?Cart
+    public function find(CartItemId $id): ?CartItem
     {
-        $cart = $this->eloquentCartModel->findOrFail($id->value());
+        $cartitem = $this->eloquentCartItemModel->findOrFail($id->value());
 
-        return new Cart(
+        return new CartItem(
+            new CartItemQuantity($cartitem->quantity),
         );
     }
 
-    public function save(Cart $cart): void
-    {
-        $newCart = $this->eloquentCartModel;
 
-        $newCart->create();
+
+    public function save(CartItem $cartitem): void
+    {
+        $newCartItem = $this->eloquentCartItemModel;
+
+        $data = [
+            'quantity'  => $cartitem->quantity()->value(),
+        ];
+
+        $newCartItem->create($data);
     }
 
 
-    public function delete(CartId $id): void
+    public function delete(CartItemId $id): void
     {
-        $this->eloquentCartModel
+        $this->eloquentCartItemModel
             ->findOrFail($id->value())
             ->delete();
     }

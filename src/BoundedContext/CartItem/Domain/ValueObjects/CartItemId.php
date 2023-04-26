@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Src\BoundedContext\Cart\Domain\ValueObjects;
+namespace Src\BoundedContext\CartItem\Domain\ValueObjects;
 
 use InvalidArgumentException;
 
-final class CartId
+final class CartItemId
 {
     private $value;
 
