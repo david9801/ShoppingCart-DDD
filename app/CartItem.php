@@ -3,10 +3,9 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class Cart extends Authenticatable
+class CartItem
 {
     use Notifiable;
 
