@@ -19,4 +19,14 @@ class Cart extends Authenticatable
         'status_id'
     ];
 
+    public function items()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(CartStatus::class);
+    }
+
 }

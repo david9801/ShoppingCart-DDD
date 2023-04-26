@@ -15,4 +15,9 @@ class CartStatus extends Authenticatable
     const PAYMENT_SUCCESSFUL = 2;
     const PAYMENT_ERROR = 3;
     const ABANDONED = 4;
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }

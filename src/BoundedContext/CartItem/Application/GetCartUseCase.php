@@ -1,13 +1,15 @@
 <?php
 
+
 declare(strict_types=1);
 
 namespace Src\BoundedContext\Cart\Application;
 
 use Src\BoundedContext\Cart\Domain\Contracts\CartRepositoryContract;
 use Src\BoundedContext\Cart\Domain\Cart;
+use Src\BoundedContext\Cart\Domain\ValueObjects\CartId;
 
-final class CreateCartUseCase
+final class GetCartUseCase
 {
     private $repository;
 
@@ -16,11 +18,12 @@ final class CreateCartUseCase
         $this->repository = $repository;
     }
 
-    public function __invoke(): void
+    public function __invoke(int $cartId): ?Cart
     {
-        $cart = Cart::create();
+        $id = new CartId($cartId);
 
-        $this->repository->save($cart);
+        $cart = $this->repository->find($id);
+
+        return $cart;
     }
 }
-

@@ -7,8 +7,7 @@ namespace Src\BoundedContext\Cart\Infrastructure;
 use Illuminate\Http\Request;
 use Src\BoundedContext\Cart\Application\GetCartUseCase;
 use Src\BoundedContext\Cart\Infrastructure\Repositories\EloquentCartRepository;
-
-final class CreateCartController
+final class GetCartController
 {
     private $repository;
 
@@ -19,14 +18,10 @@ final class CreateCartController
 
     public function __invoke(Request $request)
     {
+        $productId = (int)$request->id;
+        $getCartUseCase = new GetCartUseCase($this->repository);
+        $cart           = $getCartUseCase->__invoke($productId);
 
-        ;
-        $createCartUseCase->__invoke();
-
-        $cartId = (int)$request->id;
-        $getCartUseCase  = new GetCartUseCase($this->repository);
-        $newCart         = $getCartUseCase->__invoke($cartId);
-
-        return $newCart;
+        return $cart;
     }
 }

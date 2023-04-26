@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Src\BoundedContext\Cart\Application;
 
 use Src\BoundedContext\Cart\Domain\Contracts\CartRepositoryContract;
-use Src\BoundedContext\Cart\Domain\Cart;
+use Src\BoundedContext\Cart\Domain\ValueObjects\CartId;
 
-final class CreateCartUseCase
+final class DeleteCartUseCase
 {
     private $repository;
 
@@ -16,11 +16,10 @@ final class CreateCartUseCase
         $this->repository = $repository;
     }
 
-    public function __invoke(): void
+    public function __invoke(int $cartId): void
     {
-        $cart = Cart::create();
+        $id = new CartId($cartId);
 
-        $this->repository->save($cart);
+        $this->repository->delete($id);
     }
 }
-

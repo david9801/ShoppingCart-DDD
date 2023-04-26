@@ -7,7 +7,7 @@ namespace Src\BoundedContext\Cart\Application;
 use Src\BoundedContext\Cart\Domain\Contracts\CartRepositoryContract;
 use Src\BoundedContext\Cart\Domain\Cart;
 
-final class CreateCartUseCase
+final class CreateCargfhtUseCase
 {
     private $repository;
 

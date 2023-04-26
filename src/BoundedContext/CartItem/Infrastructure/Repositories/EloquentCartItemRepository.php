@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Src\BoundedContext\Cart\Infrastructure\Repositories;
+namespace Src\BoundedContext\CartItem\Infrastructure\Repositories;
 
 use App\Cart as EloquentCartModel;
 use Src\BoundedContext\Cart\Domain\Contracts\CartRepositoryContract;
-use Src\BoundedContext\Cart\Domain\Cart;
+use Src\BoundedContext\Cart\Domain\CartItem;
 use Src\BoundedContext\Cart\Domain\ValueObjects\CartId;
 
 
-final class EloquentCartRepository implements CartRepositoryContract
+final class EloquentCartItemRepository implements CartRepositoryContract
 {
     private $eloquentCartModel;
 

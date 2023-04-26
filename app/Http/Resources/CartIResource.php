@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CartResource extends JsonResource
+class CartIResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,7 +14,7 @@ class CartResource extends JsonResource
      */
     public function toArray($request)
     {
-        // Map Domain Cart model values
+        // Map Domain CartItem model values
         return [
             'data' => [
             ]

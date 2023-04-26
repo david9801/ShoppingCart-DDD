@@ -15,7 +15,17 @@ class CartItem
      * @var array
      */
     protected $fillable = [
-        'status_id'
+        'cart_id','quantity','product_id'
     ];
+
+    public function cart()
+    {
+        return $this->belongsTo(Cart::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 
 }
