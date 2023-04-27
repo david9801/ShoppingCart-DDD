@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Product;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Product;
 class GetAllProductController extends Controller
 {
     /**
@@ -30,4 +30,12 @@ class GetAllProductController extends Controller
 
         return response(ProductResource::collection($products), 200);
     }
+    public function index()
+    {
+        $products = Product::all();
+        $productsArray = $products->toArray();
+        // dd($productsArray);
+        return view('products.index', compact('productsArray'));
+    }
+
 }
