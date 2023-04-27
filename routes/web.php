@@ -18,4 +18,4 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/productshow', [\App\Http\Controllers\Product\GetAllProductController::class, 'index'])->name('show-products');
-Route::post('cart/add/{product}', 'CartController@add')->name('cart.add');
+Route::post('cart/add/{product}',[ \App\Http\Controllers\Cart\CreateCartController::class, 'add'])->name('cart.add');
