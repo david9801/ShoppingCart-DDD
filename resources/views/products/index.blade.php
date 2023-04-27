@@ -10,17 +10,9 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
                         <div class="card-body">
-                            <h4 class="card-title">{{ $product->name }}</h4>
-                            <h5>${{ $product->price }}</h5>
-                            <p class="card-text">{{ $product->description }}</p>
-                            <form method="POST" action="{{ route('cart.add', $product->id) }}">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="quantity">Cantidad:</label>
-                                    <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="1">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Agregar al carrito</button>
-                            </form>
+                            <h4 class="card-title">{{ $product['name'] }}</h4>
+                            <h5>${{ $product['price'] }}</h5>
+                            <p class="card-text">{{ $product['description'] }}</p>
                         </div>
                     </div>
                 </div>
