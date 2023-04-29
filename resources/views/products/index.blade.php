@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title')
+@section('title', 'Products')
 
 @section('content')
     <div class="container">
@@ -13,7 +13,7 @@
                             <h4 class="card-title">{{ $product['name'] }}</h4>
                             <h5>${{ $product['price'] }}</h5>
                             <p class="card-text">{{ $product['description'] }}</p>
-                            <form method="POST" action="{{ route('cart.add', ['product' => $product['id']]) }}">
+                            <form method="POST" action="{{ route('cart-add', ['product' => $product['id']]) }}">
                                 @csrf
                                 <div class="form-group">
                                     <label for="quantity">Cantidad:</label>

@@ -6,7 +6,7 @@ use App\Http\Resources\CartIResource;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
-
+use App\Cart;
 class GetCartItemController extends Controller
 {
     /**
@@ -33,4 +33,13 @@ class GetCartItemController extends Controller
 
         return response($cartItem, 200);
     }
+
+    public function show()
+    {
+        $cart = Cart::where('status_id', 1)->first();
+        $cartItems = $cart->items();
+        dd($cartItems);
+        return view('shoppingCart.index', compact('cartItems'));
+    }
+
 }

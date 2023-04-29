@@ -30,11 +30,10 @@ class GetAllProductController extends Controller
 
         return response(ProductResource::collection($products), 200);
     }
-    public function index()
+    public function show()
     {
         $products = Product::all();
         $productsArray = $products->toArray();
-        // dd($productsArray);
         return view('products.index', compact('productsArray'));
     }
 

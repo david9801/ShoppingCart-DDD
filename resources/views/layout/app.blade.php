@@ -44,7 +44,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('show-products')}}"> <i class="bi bi-house-door-fill"></i>   Show Products </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{route('show-shopping-cart')}}"> <i class="bi bi-house-door-fill"></i>   Show ShoppingCart </a>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -9,8 +9,6 @@ use Illuminate\Http\Response;
 use App\Product;
 use App\Cart;
 use App\CartItem;
-use Illuminate\Support\Facades\Log;
-use Src\BoundedContext\CartItem\Domain\ValueObjects\CartItemQuantity;
 
 class GetCartController extends Controller
 {
