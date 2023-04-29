@@ -3,12 +3,14 @@
 
 namespace App;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class CartItem
+class CartItem extends Authenticatable
 {
     use Notifiable;
-
+    public $timestamps = false;
+    //si no extiende Authenticatable no se puede usar sus relaciones en los controllers
     /**
      * The attributes that are mass assignable.
      *

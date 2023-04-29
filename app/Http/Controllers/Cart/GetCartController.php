@@ -9,6 +9,8 @@ use Illuminate\Http\Response;
 use App\Product;
 use App\Cart;
 use App\CartItem;
+use Illuminate\Support\Facades\Log;
+use Src\BoundedContext\CartItem\Domain\ValueObjects\CartItemQuantity;
 
 class GetCartController extends Controller
 {
@@ -36,40 +38,84 @@ class GetCartController extends Controller
 
         return response($cart, 200);
     }
-    public function add(Request $request)
+
+    public function add(Request $request, $product)
     {
-        $productId = $request->input('product_id');
-        $quantity = $request->input('quantity', 1);
+        $validatedData = $request->validate([
+            'quantity' => 'required|integer|min:1|max:50',
+        ]);
+        $quantity = $validatedData['quantity'];
+        $product = Product::findOrFail($product);
 
-        // Buscar el producto por su id
-        $product = Product::findOrFail($productId);
-
-        // Obtener el carrito de la compra actual del usuario
         $cart = Cart::where('status_id', 1)->first();
 
-        // Si no hay un carrito de la compra activo, crear uno nuevo
+        $cart = $this->createCartIfNotExist($cart);
+
+        $cartItem = $cart->items()->where('product_id', $product->id)->first();
+
+        $cartItem = $this->createCartItemIfNotExist($cartItem, $cart, $product, $quantity);
+
+        $this->updateCartItem($cartItem, $cart, $product, $quantity);
+
+        return redirect()->route('show-products');
+    }
+
+    /**
+     * @param $cartItem
+     * @param $cart
+     * @param $product
+     * @param $quantity
+     * @return CartItem|null
+     */
+    private function updateCartItem($cartItem, $cart, $product, $quantity): ?CartItem
+    {
+        $this->updateCartItemQuantity($cartItem, $quantity);
+        return $cartItem;
+    }
+
+    /**
+     * @param $cartItem
+     * @param $quantity
+     * @return CartItem|null
+     */
+    private function updateCartItemQuantity($cartItem, $quantity): ?CartItem
+    {
+        $cartItem->quantity += $quantity;
+        $cartItem->save();
+        return $cartItem;
+    }
+
+    /**
+     * @param $cart
+     * @return Cart
+     */
+    private function createCartIfNotExist($cart): Cart
+    {
         if (!$cart) {
             $cart = new Cart;
             $cart->status_id = 1; // 1 es el id del estado "activo"
             $cart->save();
         }
+        return $cart;
+    }
 
-        // Buscar si ya existe el producto en el carrito de la compra
-        $cartItem = CartItem::where('cart_id', $cart->id)->where('product_id', $product->id)->first();
-
-        // Si el producto ya existe, incrementar la cantidad
-        if ($cartItem) {
-            $cartItem->quantity += $quantity;
-            $cartItem->save();
-        } else { // Si el producto no existe, crear un nuevo ítem en el carrito
+    /**
+     * @param $cartItem
+     * @param Cart $cart
+     * @param $product
+     * @param $quantity
+     * @return CartItem
+     */
+    private function createCartItemIfNotExist($cartItem, Cart $cart, $product, $quantity): CartItem
+    {
+        if (!$cartItem) {
             $cartItem = new CartItem;
             $cartItem->cart_id = $cart->id;
             $cartItem->product_id = $product->id;
             $cartItem->quantity = $quantity;
             $cartItem->save();
         }
-
-        return redirect()->route('show-products');
+        return $cartItem;
     }
 
 
