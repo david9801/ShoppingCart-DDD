@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 class CartItem extends Authenticatable
 {
     use Notifiable;
+
     public $timestamps = false;
     //si no extiende Authenticatable no se puede usar sus relaciones en los controllers
     /**

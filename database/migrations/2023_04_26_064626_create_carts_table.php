@@ -17,8 +17,7 @@ class CreateCartsTable extends Migration
             $table->id();
             $table->foreignId('status_id')
                 ->default(App\CartStatus::IN_PROGRESS)
-                ->constrained('cart_statuses')
-                ->onDelete('cascade');
+                ->constrained('cart_statuses');
             $table->timestamps();
         });
     }
