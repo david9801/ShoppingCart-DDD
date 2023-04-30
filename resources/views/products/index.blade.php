@@ -5,6 +5,12 @@
 @section('content')
     <div class="container">
         <h1 class="my-4">Lista de productos</h1>
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
         <div class="row">
             @foreach ($productsArray as $product)
                 <div class="col-lg-4 col-md-6 mb-4">

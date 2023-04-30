@@ -38,6 +38,11 @@ class GetCartItemController extends Controller
     public function show()
     {
         $cart = Cart::where('status_id', 1)->first();
+
+        if (!$cart) {
+            return redirect()->route('show-products')->with('status', 'Todavía no has elegido ningún producto.');
+        }
+
         $cartItems = $cart->items()->get()->map->toArrayCart();
         return view('shoppingCart.index', compact('cartItems'));
     }
