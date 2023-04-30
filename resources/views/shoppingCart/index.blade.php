@@ -13,7 +13,7 @@
                     <th>Precio</th>
                     <th>Cantidad</th>
                     <th>Subtotal</th>
-                    <th></th>
+                    <th>Eliminar Producto </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,17 @@
                         <td>{{ $item['quantity'] }}</td>
                         <td>${{ $item['quantity'] * $item['product']['price'] }}</td>
                         <td>
-                      <p> DELETE</p>
+                            <form action="{{ route('cart-delete') }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="product_id" value="{{ $item['product']['id'] }}">
+                                <div class="form-group">
+                                    <label for="remove_quantity">Eliminar cantidad:</label>
+                                    <input type="number" class="form-control" id="remove_quantity" name="remove_quantity" min="1" max="{{ $item['quantity'] }}">
+                                </div>
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+
                         </td>
                     </tr>
                 @endforeach
