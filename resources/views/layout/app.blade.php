@@ -42,10 +42,10 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('show-products')}}"> <i class="bi bi-house-door-fill"></i>   Show Products </a>
+                            <a class="nav-link active" aria-current="page" href="{{route('show-products')}}">  <i class="fa-solid fa-list"></i>   Show Products </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('show-shopping-cart')}}"> <i class="bi bi-house-door-fill"></i>   Show ShoppingCart </a>
+                            <a class="nav-link active" aria-current="page" href="{{route('show-shopping-cart')}}">  <i class="fa-solid fa-cart-shopping"></i>   Show ShoppingCart </a>
                         </li>
                     </ul>
                 </div>

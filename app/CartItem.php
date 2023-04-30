@@ -29,5 +29,20 @@ class CartItem extends Authenticatable
     {
         return $this->belongsTo(Product::class);
     }
+    public function toArrayCart()
+    {
+        $product = $this->product;
+
+        return [
+            'id' => $this->id,
+            'quantity' => $this->quantity,
+            'product' => [
+                'id' => $product->id,
+                'name' => $product->name,
+                'description' => $product->description,
+                'price' => $product->price,
+            ],
+        ];
+    }
 
 }

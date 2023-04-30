@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CartItem;
 
 use App\Http\Resources\CartIResource;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
@@ -37,9 +38,9 @@ class GetCartItemController extends Controller
     public function show()
     {
         $cart = Cart::where('status_id', 1)->first();
-        $cartItems = $cart->items();
-        dd($cartItems);
+        $cartItems = $cart->items()->get()->map->toArrayCart();
         return view('shoppingCart.index', compact('cartItems'));
     }
 
 }
+
