@@ -51,7 +51,7 @@ class GetCartController extends Controller
 
         $cartItem = $cart->items()->where('product_id', $product->id)->first();
 
-        $cartItem = $this->createCartItemIfNotExist($cartItem, $cart, $product, $quantity);
+        $cartItem = $this->createCartItemIfNotExist($cartItem, $cart, $product);
 
         $this->updateCartItem($cartItem, $cart, $product, $quantity);
 
@@ -101,16 +101,14 @@ class GetCartController extends Controller
      * @param $cartItem
      * @param Cart $cart
      * @param $product
-     * @param $quantity
      * @return CartItem
      */
-    private function createCartItemIfNotExist($cartItem, Cart $cart, $product, $quantity): CartItem
+    private function createCartItemIfNotExist($cartItem, Cart $cart, $product): CartItem
     {
         if (!$cartItem) {
             $cartItem = new CartItem;
             $cartItem->cart_id = $cart->id;
             $cartItem->product_id = $product->id;
-            $cartItem->quantity = $quantity;
             $cartItem->save();
         }
         return $cartItem;
