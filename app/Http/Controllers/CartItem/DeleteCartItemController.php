@@ -35,13 +35,11 @@ class DeleteCartItemController extends Controller
 
     public function remove(Request $request)
     {
-        Log::error('eeeeee');
+        Log::error('entra en removee');
         $cart = $this->getCart();
         $item = $this->getModel($cart, $request);
-        Log::error('eeeeefdsgse');
 
         $this->updateCartItemQuantity($item, $request);
-        Log::error('eeeeefdsaaaaaaaaaaaaaaaaaagse');
 
         return redirect()->route('show-shopping-cart');
     }

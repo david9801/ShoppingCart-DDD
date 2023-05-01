@@ -31,7 +31,7 @@ class DeleteCartItemControllerTest extends TestCase
         $cartItem->cart_id = $cart->id;
         $cartItem->product_id = $product->id;
         $cartItem->save();
-       // dd($cartItem->quantity);
+        // dd($cartItem->quantity);
         $response = $this->delete(route('cart-delete'), [
             'product_id' => $cartItem->product_id,
             'remove_quantity' => 2,
@@ -65,9 +65,10 @@ class DeleteCartItemControllerTest extends TestCase
         $cartItem->save();
         $response = $this->delete(route('cart-delete'), [
             'product_id' => $cartItem->product_id,
-            'remove_quantity' => $cartItem->quantity,
+            'remove_quantity' => 1,
             'cart_id' => $cart->id,
         ]);
+        dd($cartItem->quantity);
         $response->assertRedirect(route('show-shopping-cart'));
         $this->assertDatabaseMissing('cart_items', [
             'cart_id' => $cart->id,
