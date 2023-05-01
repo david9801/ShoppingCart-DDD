@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use App\Cart;
 use App\CartItem;
-
+use Illuminate\Support\Facades\Log;
 class DeleteCartItemController extends Controller
 {
     /**
@@ -35,10 +35,14 @@ class DeleteCartItemController extends Controller
 
     public function remove(Request $request)
     {
+        Log::error('eeeeee');
         $cart = $this->getCart();
         $item = $this->getModel($cart, $request);
+        Log::error('eeeeefdsgse');
 
         $this->updateCartItemQuantity($item, $request);
+        Log::error('eeeeefdsaaaaaaaaaaaaaaaaaagse');
+
         return redirect()->route('show-shopping-cart');
     }
 
